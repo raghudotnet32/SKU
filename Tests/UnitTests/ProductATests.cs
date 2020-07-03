@@ -6,14 +6,14 @@ using Xunit;
 
 namespace Promotion.Calculator.Tests
 {
-    public class ProductATest : IDisposable
+    public class ProductATests : IDisposable
     {
-        [Fact(DisplayName = "ProductA TotalPrice returns value")]
+        [Fact(DisplayName = "ProductATestTotalPrice_Returns_Promotion_Price")]
         public void ProductATotalPrice_Returns_Value()
         {
             //Arrange
-            DataHelper data = new DataHelper();
-            var products = data.GenerateData("A", 3);
+            List<Product> products = new List<Product>();
+            products.Add(new Product("A", 3));
             //Assert
             var value = new ProductA<List<Product>>(products).CalculateProductPrice();
 
@@ -21,12 +21,11 @@ namespace Promotion.Calculator.Tests
             value.Equals(130);
         }
 
-        [Fact(DisplayName = "ProductA TotalPrice returns zero")]
-        public void ProductATotalPrice_Returns_Zero()
+        [Fact(DisplayName = "ProductATestTotalPrice_Returns_Zero_OnNoProduct")]
+        public void ProductATestTotalPrice_Returns_Zero_OnNoProduct()
         {
             //Arrange
-            DataHelper data = new DataHelper();
-            var products = data.GenerateData("B", 3);
+            List<Product> products = new List<Product>();
 
             //Assert
             var value = new ProductA<List<Product>>(products).CalculateProductPrice();

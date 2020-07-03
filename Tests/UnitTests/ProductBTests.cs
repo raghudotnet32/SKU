@@ -6,15 +6,15 @@ using Xunit;
 
 namespace Promotion.Calculator.Tests
 {
-    public class ProductBTest : IDisposable
+    public class ProductBTests : IDisposable
     {
 
-        [Fact(DisplayName = "ProductB TotalPrice returns value")]
-        public void ProductBTotalPrice_Returns_Value()
+        [Fact(DisplayName = "ProductBTestTotalPrice_Returns_Promotion_Price")]
+        public void ProductBTestTotalPrice_Returns_Promotion_Price()
         {
             //Arrange
-            DataHelper data = new DataHelper();
-            var products = data.GenerateData("B", 2);
+            List<Product> products = new List<Product>();
+            products.Add(new Product("B", 2));
             //Assert
             var value = new ProductB<List<Product>>(products).CalculateProductPrice();
 
@@ -22,12 +22,11 @@ namespace Promotion.Calculator.Tests
             value.Equals(45);
         }
 
-        [Fact(DisplayName = "ProductB TotalPrice returns zero")]
-        public void ProductBTotalPrice_Returns_Zero()
+        [Fact(DisplayName = "ProductBTestTotalPrice_Returns_Zero_OnNoProduct")]
+        public void ProductBTestTotalPrice_Returns_Zero_OnNoProduct()
         {
             //Arrange
-            DataHelper data = new DataHelper();
-            var products = data.GenerateData("A", 3);
+            List<Product> products = new List<Product>();
 
             //Assert
             var value = new ProductB<List<Product>>(products).CalculateProductPrice();
