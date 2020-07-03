@@ -9,7 +9,7 @@ namespace Promotion.Calculator.Tests
     public class ProductATests : IDisposable
     {
         [Fact(DisplayName = "ProductATestTotalPrice_Returns_Promotion_Price")]
-        public void ProductATotalPrice_Returns_Value()
+        public void ProductATestTotalPrice_Returns_Promotion_Price()
         {
             //Arrange
             List<Product> products = new List<Product>();
@@ -19,6 +19,19 @@ namespace Promotion.Calculator.Tests
 
             //Act
             value.Equals(130);
+        }
+
+        [Fact(DisplayName = "ProductATestTotalPrice_Returns_NonPromotion_Price")]
+        public void ProductATestTotalPrice_Returns_NonPromotion_Price()
+        {
+            //Arrange
+            List<Product> products = new List<Product>();
+            products.Add(new Product("A", 2));
+            //Assert
+            var value = new ProductA<List<Product>>(products).CalculateProductPrice();
+
+            //Act
+            value.Equals(100);
         }
 
         [Fact(DisplayName = "ProductATestTotalPrice_Returns_Zero_OnNoProduct")]
