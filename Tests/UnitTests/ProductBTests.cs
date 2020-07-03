@@ -22,6 +22,19 @@ namespace Promotion.Calculator.Tests
             value.Equals(45);
         }
 
+        [Fact(DisplayName = "ProductBTestTotalPrice_Returns_NonPromotion_Price")]
+        public void ProductBTestTotalPrice_Returns_NonPromotion_Price()
+        {
+            //Arrange
+            List<Product> products = new List<Product>();
+            products.Add(new Product("B", 1));
+            //Assert
+            var value = new ProductA<List<Product>>(products).CalculateProductPrice();
+
+            //Act
+            value.Equals(30);
+        }
+
         [Fact(DisplayName = "ProductBTestTotalPrice_Returns_Zero_OnNoProduct")]
         public void ProductBTestTotalPrice_Returns_Zero_OnNoProduct()
         {
