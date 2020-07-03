@@ -1,4 +1,4 @@
-﻿using Promotion.Calculator;
+﻿using Promotion.Calculator.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +10,8 @@ namespace Promotion.Calculator
         static Dictionary<string, int> cart = new Dictionary<string, int>();
         public static void Main(string[] args)
         {
+
+
             Console.WriteLine("total number of order");
 
             int a = Convert.ToInt32(Console.ReadLine());
@@ -24,7 +26,18 @@ namespace Promotion.Calculator
                     cart.Add(product.Id, product.Count);
             }
             var products = (from item in cart select new Product(item.Key, item.Value)).ToList();
+            int totalPrice = GetTotalPrice(products);
+            Console.WriteLine(totalPrice);
             Console.ReadLine();
+        }
+
+        private static int GetTotalPrice(List<Product> products)
+        {
+            var finalPrice = 0;
+            finalPrice += new ProductA<List<Product>>(products.Where(x => x.Id == "A").ToList()).CalculateProductPrice();
+            finalPrice += new ProductB<List<Product>>(products.Where(x => x.Id == "B").ToList()).CalculateProductPrice();
+            finalPrice += new ProductCnD<List<Product>>(products.Where(x => x.Id == "C" || x.Id == "D").ToList()).CalculateProductPrice();
+            return finalPrice;
         }
     }
 }
