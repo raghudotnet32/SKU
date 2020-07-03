@@ -37,8 +37,10 @@ namespace Promotion.Calculator.Products
         {
             if (productC is null && productD is null)
                 return 0;
-            if (productC.Count <= 0 | productD.Count <= 0)
-                return (productC.Count * priceOfC) + (productD.Count * priceOfD);
+            if(productC is null)
+                return (productD.Count * priceOfD);
+            if (productD is null)
+                return (productC.Count * priceOfC);
 
             return ApplyPromotion();
         }
