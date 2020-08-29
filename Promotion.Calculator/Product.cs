@@ -7,6 +7,8 @@ namespace Promotion.Calculator
     {
         public string Id { get; set; }
         public int Count { get; set; }
+
+        public string dummystring { get; set; }
         
 
         public Product(string input)
